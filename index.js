@@ -283,7 +283,6 @@ class SortableGrid extends Component {
   }
 
   assessGridSize = ({ nativeEvent }) => {
-    console.log('Calculating grid size')
     if (this.props.itemWidth && this.props.itemWidth < nativeEvent.layout.width) {
       this.itemsPerRow = Math.floor(nativeEvent.layout.width / this.props.itemWidth)
       this.blockWidth = nativeEvent.layout.width / this.itemsPerRow
@@ -410,12 +409,11 @@ class SortableGrid extends Component {
     })
 
     if (redraw) {
-      console.log('redraw')
       this.items = []
       this.itemOrder = []
       this.setGhostPositions()
       const stateBlockPositions = []
-      const stateBlockPositionsSetCount = 0
+      let stateBlockPositionsSetCount = 0
 
       items.forEach((item, index) => {
         this.itemOrder.push({ key: item.key, ref: item.ref, order: this.items.length })
