@@ -53,22 +53,22 @@ class SortableGrid extends Component {
       onLayout={this.assessGridSize}
     >
       {this.state.gridLayout &&
-      this.items.map((item, key) =>
-        <Block
-          key={key}
-          style={this._getBlockStyle(key)}
-          onLayout={this.saveBlockPositions(key)}
-          panHandlers={this._panResponder.panHandlers}
-          delayLongPress={this.dragActivationTreshold}
-          onLongPress={this.activateDrag(key)}
-          onPress={this.handleTap(item.props)}
-          itemWrapperStyle={this._getItemWrapperStyle(key)}
-          deletionView={this._getDeletionView(key)}
-          inactive={item.props.inactive}
-        >
-          {item}
-        </Block>
-      )}
+        this.items.map((item, key) =>
+          <Block
+            key={key}
+            style={this._getBlockStyle(key)}
+            onLayout={this.saveBlockPositions(key)}
+            panHandlers={this._panResponder.panHandlers}
+            delayLongPress={this.dragActivationTreshold}
+            onLongPress={this.activateDrag(key)}
+            onPress={this.handleTap(item.props)}
+            itemWrapperStyle={this._getItemWrapperStyle(key)}
+            deletionView={this._getDeletionView(key)}
+            inactive={item.props.inactive}
+          >
+            {item}
+          </Block>
+        )}
     </Animated.View>
 
   constructor() {
@@ -481,7 +481,7 @@ class SortableGrid extends Component {
     this.gridHeightTarget = this.rows * this.state.blockHeight
     if (this.gridHeightTarget === this.state.gridLayout.height || this.state.gridLayout.height === 0)
       this.state.gridHeight.setValue(this.gridHeightTarget)
-    else if (this.state.gridHeight._value !== this.gridHeightTarget) {
+    else if (this.gridHeightTarget) {
       Animated.timing(
         this.state.gridHeight,
         {
